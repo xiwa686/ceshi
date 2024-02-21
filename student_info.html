@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息查询</title>
+    <style>
+        .question {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>学生信息查询</h2>
+    <div id="studentInfo">
+        <div class="question">
+            <p>1. 学生年纪:</p>
+            <input type="radio" id="primary" name="age" value="primary">
+            <label for="primary">小学</label>
+            <input type="radio" id="middle" name="age" value="middle">
+            <label for="middle">中学</label>
+        </div>
+
+        <div class="question">
+            <p>2. 学生成绩:</p>
+            <input type="radio" id="gradeA" name="grade" value="A">
+            <label for="gradeA">95-100</label>
+            <input type="radio" id="gradeB" name="grade" value="B">
+            <label for="gradeB">85-90</label>
+            <input type="radio" id="gradeC" name="grade" value="C">
+            <label for="gradeC">85以下</label>
+        </div>
+
+        <div class="question">
+            <p>3. 学生性别:</p>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">男生</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">女生</label>
+        </div>
+
+        <div class="question">
+            <p>4. 学校区域:</p>
+            <input type="radio" id="island" name="region" value="island">
+            <label for="island">港岛区</label>
+            <input type="radio" id="centralWestern" name="region" value="centralWestern">
+            <label for="centralWestern">中西区</label>
+            <input type="radio" id="kowloon" name="region" value="kowloon">
+            <label for="kowloon">九龙区</label>
+        </div>
+        
+        <button type="button" onclick="recommendSchool()">提交</button>
+    </div>
+
+    <div id="recommendation"></div>
+
+    <script>
+        function recommendSchool() {
+            var gradeElements = document.getElementsByName('grade');
+            var selectedGrade;
+            for(var i = 0; i < gradeElements.length; i++) {
+                if(gradeElements[i].checked) {
+                    selectedGrade = gradeElements[i].value;
+                    break;
+                }
+            }
+            var schoolBand = "未知";
+            switch (selectedGrade) {
+                case 'A':
+                    schoolBand = "推荐学校 BAND1";
+                    break;
+                case 'B':
+                    schoolBand = "推荐学校 BAND2";
+                    break;
+                case 'C':
+                    schoolBand = "推荐学校 BAND3";
+                    break;
+            }
+            document.getElementById('recommendation').innerHTML = schoolBand;
+        }
+    </script>
+</body>
+</html>
